@@ -1,22 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Tracker</ion-title>
+    <ion-title> Tracker </ion-title>
     <ion-icon name="home" slot="end"> </ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form id="trackerForm">
+  <form id="trackerForm" [formGroup] = "taskForm">
 <ion-list>
   <ion-list-header>
     Track a task
   </ion-list-header>
   <ion-item>
-    <ion-input name="taskName" placeholder="Enter name of task" type="text"></ion-input>
+    <ion-input name="taskName" placeholder="Enter name of task" type="text" formControlName = "name"></ion-input>
   </ion-item>
-  <ion-button expand="full" margin="10dp" *ngIf="!started" (click)="start()"> Start </ion-button>
+  <ion-button expand="full" margin="10dp" *ngIf="!started" (click)="start()" [disabled]= "!taskForm.valid"> Start </ion-button>
+  <ion-button expand="full" color="success" margin="10dp" *ngIf="started" (click)="reset()"> Reset </ion-button>
   <ion-button expand="full" color="danger" margin="10dp" *ngIf="started" (click)="stop()"> Stop </ion-button>
   <!--<ion-button expand="full" margin="10dp" *ngIf="started" (click)="stop()"> Reset </ion-button>-->
+
+<ion-item *ngIf="started"> {{time}} seconds </ion-item>
 </ion-list>
 </form>
 </ion-content>
