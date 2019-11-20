@@ -44,6 +44,7 @@ export class TrackerPage implements OnInit {
     this.stopTime = new Date().getTime();
     this.timerSub.unsubscribe();
     this.save();
+    this.taskForm.reset();
     console.log( this.stopTime);
 
   }
